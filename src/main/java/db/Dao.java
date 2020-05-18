@@ -2,6 +2,7 @@ package db;
 
 import db.strategiesInsert.StrategyOfSaving;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -15,7 +16,7 @@ public interface Dao<T> {
 
     void save(T object);
 
-    void saveAll(List<T> objects, StrategyOfSaving<T> strategyOfSaving);
+    void saveAll(List<T> objects, StrategyOfSaving<T> strategyOfSaving) throws SQLException;
 
     void update(T object, String[] params);
 

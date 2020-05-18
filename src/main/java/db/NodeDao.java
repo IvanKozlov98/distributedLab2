@@ -54,8 +54,12 @@ public class NodeDao implements Dao<Node> {
     }
 
     @Override
-    public void saveAll(List<Node> objects, StrategyOfSaving<Node> strategyOfSaving) {
+    public void saveAll(List<Node> objects, StrategyOfSaving<Node> strategyOfSaving) throws SQLException{
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
         strategyOfSaving.saveAll(objects, new NodeQueryHelper());
+        connection.commit();
+        connection.setAutoCommit(autoCommit);
     }
 
     @Override

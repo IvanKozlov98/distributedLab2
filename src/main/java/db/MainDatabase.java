@@ -56,12 +56,16 @@ public class MainDatabase {
             List<Node> nodes,
             StrategyOfSaving<Node> strategy
     ) {
-        long start = System.currentTimeMillis();
-        nodeDao.saveAll(nodes, strategy);
-        long finish = System.currentTimeMillis();
-        long timeConsumedMillis = finish - start;
-        logger.info("Time strategy " + strategy.toString() + " is " + timeConsumedMillis);
-        nodeDao.clear();
+        try {
+            long start = System.currentTimeMillis();
+            nodeDao.saveAll(nodes, strategy);
+            long finish = System.currentTimeMillis();
+            long timeConsumedMillis = finish - start;
+            logger.info("Time strategy " + strategy.toString() + " is " + timeConsumedMillis);
+            nodeDao.clear();
+        } catch (SQLException e) {
+            logger.warn("some error in exeucting", e);
+        }
     }
 
     public void run(List<Node> nodes) {
@@ -72,7 +76,8 @@ public class MainDatabase {
 
             NodeDao nodeDao = new NodeDao(connection);
             // first strategy
-
+            boolean autoCommit = connection.getAutoCommit();
+            connection.setAutoCommit(false);
             StrategyOfSaving<Node> prepareStatementStrategy = new PrepareStatementStrategy<>(connection);
             savingRecordsByStrategy(
                     nodeDao, nodes, prepareStatementStrategy
