@@ -46,14 +46,14 @@ public class TLab {
         }
     }
 
-    public void run() {
-
+    public List<Node> run() {
         try (InputStream in = new BufferedInputStream(new FileInputStream("RU-NVS.osm"))) {
             logger.info("start treat xml file");
             JAXBContext context = JAXBContext.newInstance(Osm.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Osm osm = (Osm) unmarshaller.unmarshal(in);
             lab1(osm);
+            return osm.getNode();
         } catch (IOException e) {
             logger.warn("ioexception ", e);
         } catch (JAXBException ee) {
@@ -65,5 +65,6 @@ public class TLab {
             printKeyToCount();
         }
         logger.info("end application");
+        return null;
     }
 }

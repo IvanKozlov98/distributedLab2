@@ -55,6 +55,30 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlRootElement(name = "node")
 public class Node {
 
+    @Override
+    public boolean equals(Object node) {
+        Node castingNode = (Node)node;
+        return
+                castingNode.id.compareTo(this.id) == 0 &&
+                castingNode.uid.compareTo(this.uid) == 0  &&
+                castingNode.version.compareTo(this.version) == 0  &&
+                castingNode.changeset.compareTo(this.changeset) == 0  &&
+                castingNode.lat.compareTo(this.lat) == 0 &&
+                castingNode.lon.compareTo(this.lon) == 0 &&
+                castingNode.user.equals(this.user);
+    }
+
+    public int hashCode() {
+        return (this.id.toString() +
+                this.uid.toString() +
+                this.version.toString() +
+                this.changeset.toString() +
+                this.lat.toString() +
+                this.lon.toString() +
+                this.user).hashCode()
+                ;
+    }
+
     protected List<Tag> tag;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "unsignedLong")
@@ -79,6 +103,17 @@ public class Node {
     @XmlAttribute(name = "timestamp")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar timestamp;
+
+    public Node() {
+        id = new BigInteger("122");
+        lat = new Double("122");
+        lon = new Double("122");
+        user = "John";
+        uid = new BigInteger("122");
+        version = new BigInteger("122");
+        changeset = new BigInteger("122");
+    }
+
 
     /**
      * Gets the value of the tag property.
