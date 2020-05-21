@@ -8,6 +8,7 @@
 
 package generated.org.openstreetmap.osm._0;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -36,11 +37,27 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "tag")
+@Entity
+@Table(name = "tags")
 public class Tag {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "node_id")
+    private Node node;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "way_id")
+    private Way way;
+
     @XmlAttribute(name = "k")
+    @Column(name = "k")
     protected String k;
     @XmlAttribute(name = "v")
+    @Column(name = "v")
     protected String v;
 
     /**

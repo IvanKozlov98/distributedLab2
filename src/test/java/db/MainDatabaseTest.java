@@ -1,5 +1,6 @@
 package db;
 
+
 import db.strategiesInsert.BatchStrategy;
 import db.strategiesInsert.PrepareStatementStrategy;
 import db.strategiesInsert.StatementStrategy;

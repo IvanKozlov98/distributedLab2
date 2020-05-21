@@ -11,6 +11,7 @@ package generated.org.openstreetmap.osm._0;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -53,6 +54,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "tag"
 })
 @XmlRootElement(name = "node")
+@Entity
+@Table(name = "nodes")
 public class Node {
 
     @Override
@@ -78,27 +81,35 @@ public class Node {
                 this.user).hashCode()
                 ;
     }
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Tag> tag;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "unsignedLong")
+    @Id
     protected BigInteger id;
     @XmlAttribute(name = "lat")
+    @Column(name = "lat")
     protected Double lat;
     @XmlAttribute(name = "lon")
+    @Column(name = "lon")
     protected Double lon;
     @XmlAttribute(name = "user")
+    @Column(name = "nameOfUser")
     protected String user;
     @XmlAttribute(name = "uid")
     @XmlSchemaType(name = "unsignedLong")
+    @Column(name = "uid")
     protected BigInteger uid;
     @XmlAttribute(name = "visible")
+    @Column(name = "visible")
     protected Boolean visible;
     @XmlAttribute(name = "version")
     @XmlSchemaType(name = "unsignedLong")
+    @Column(name = "version")
     protected BigInteger version;
     @XmlAttribute(name = "changeset")
     @XmlSchemaType(name = "unsignedLong")
+    @Column(name = "changeset")
     protected BigInteger changeset;
     @XmlAttribute(name = "timestamp")
     @XmlSchemaType(name = "dateTime")

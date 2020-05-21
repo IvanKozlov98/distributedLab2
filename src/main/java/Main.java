@@ -12,12 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //List<Node> nodes = new ArrayList<>();
+        // 1 lab
+        /*
+        List<Node> nodes = new ArrayList<>();
         // fill nodes
-        //for (int i = 0; i < 100000; ++i) {
-        //    nodes.add(new Node());
-        //}
+        for (int i = 0; i < 10000; ++i) {
+            nodes.add(new Node());
+        }
 
-        new MainDatabase().run(new TLab().run());
+        new MainDatabase().run(nodes);
+        */
+
+
     }
 }
