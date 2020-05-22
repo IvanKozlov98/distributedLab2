@@ -1,6 +1,7 @@
 package db2.utils.config;
 
 //import org.hibernate.ejb.HibernatePersistence;
+
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +22,7 @@ import java.util.Properties;
 @EnableTransactionManagement // включает TransactionManager для управления транзакциями БД;
 @ComponentScan("db2.utils")
 @PropertySource("classpath:app.properties") // подключаем файл свойств созданный выше;
-@EnableJpaRepositories("db2.utils.repository") // включаем возможность использования JPARepository и говорим, где их искать.
+@EnableJpaRepositories("db2.utils") // включаем возможность использования JPARepository и говорим, где их искать.
 public class DataConfig {
 
     // Database properties
@@ -73,7 +74,7 @@ public class DataConfig {
         Properties properties = new Properties();
         properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
         properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        //properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+       // properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
 
         return properties;
     }

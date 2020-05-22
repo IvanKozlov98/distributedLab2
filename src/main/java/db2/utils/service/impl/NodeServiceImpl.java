@@ -16,8 +16,7 @@ public class NodeServiceImpl implements NodeService {
 
     @Override
     public Node addNode(Node node) {
-        Node savedNode = nodeRepository.saveAndFlush(node);
-        return savedNode;
+        return nodeRepository.saveAndFlush(node);
     }
 
     @Override
@@ -25,18 +24,18 @@ public class NodeServiceImpl implements NodeService {
         nodeRepository.delete(id);
     }
 
-    @Override
+    /*@Override
     public Node getByName(String name) {
-        return null;
-    }
+        return nodeRepository.findByName(name);
+    }*/
 
     @Override
     public Node editNode(Node node) {
-        return null;
+        return nodeRepository.saveAndFlush(node);
     }
 
     @Override
     public List<Node> getAll() {
-        return null;
+        return nodeRepository.findAll();
     }
 }

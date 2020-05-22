@@ -1,5 +1,7 @@
 import db.DataBaseInitializer;
 import db.MainDatabase;
+import db2.utils.service.NodeService;
+import db2.utils.service.impl.NodeServiceImpl;
 import generated.org.openstreetmap.osm._0.Node;
 
 import java.io.IOException;
@@ -23,6 +25,10 @@ public class Main {
         new MainDatabase().run(nodes);
         */
 
+        NodeService nodeService = new NodeServiceImpl();
+        for (int i = 0; i < 10000; ++i) {
+            nodeService.addNode(new Node());
+        }
 
     }
 }

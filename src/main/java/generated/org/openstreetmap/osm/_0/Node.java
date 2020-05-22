@@ -81,7 +81,7 @@ public class Node {
                 this.user).hashCode()
                 ;
     }
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "node", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Tag> tag;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "unsignedLong")
@@ -113,6 +113,7 @@ public class Node {
     protected BigInteger changeset;
     @XmlAttribute(name = "timestamp")
     @XmlSchemaType(name = "dateTime")
+    @Transient
     protected XMLGregorianCalendar timestamp;
 
     public Node() {

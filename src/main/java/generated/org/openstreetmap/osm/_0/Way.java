@@ -60,9 +60,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Way {
 
     @XmlElement(required = true)
+    @Transient
     protected List<Nd> nd;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "way", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Tag> tag;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "unsignedLong")
@@ -88,6 +89,7 @@ public class Way {
     protected BigInteger changeset;
     @XmlAttribute(name = "timestamp")
     @XmlSchemaType(name = "dateTime")
+    @Transient
     protected XMLGregorianCalendar timestamp;
 
     /**
