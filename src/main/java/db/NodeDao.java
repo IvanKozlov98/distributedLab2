@@ -2,7 +2,7 @@ package db;
 
 
 import db.strategiesInsert.StrategyOfSaving;
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 
 import java.math.BigInteger;
 import java.sql.Connection;

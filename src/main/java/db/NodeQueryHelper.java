@@ -1,6 +1,6 @@
 package db;
 
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

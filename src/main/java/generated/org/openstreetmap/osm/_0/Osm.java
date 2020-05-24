@@ -8,6 +8,10 @@
 
 package generated.org.openstreetmap.osm._0;
 
+import db2.utils.Model.Node;
+import db2.utils.Model.Relation;
+import db2.utils.Model.Way;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;

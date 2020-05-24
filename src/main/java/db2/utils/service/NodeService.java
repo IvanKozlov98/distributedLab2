@@ -1,13 +1,17 @@
 package db2.utils.service;
 
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface NodeService {
     Node addNode(Node node);
-    void delete(long id);
+    boolean delete(long id);
     //Node getByName(String name);
+    List<Node> getNearNodes(double x, double y, double r);
     Node editNode(Node node);
+    boolean editById(Node node, long id);
     List<Node> getAll();
+    Optional<Node> getById(long id);
 }

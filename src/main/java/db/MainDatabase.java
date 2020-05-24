@@ -4,7 +4,7 @@ import db.strategiesInsert.BatchStrategy;
 import db.strategiesInsert.PrepareStatementStrategy;
 import db.strategiesInsert.StatementStrategy;
 import db.strategiesInsert.StrategyOfSaving;
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

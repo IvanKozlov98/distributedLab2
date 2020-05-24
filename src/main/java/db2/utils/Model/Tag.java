@@ -6,7 +6,11 @@
 //
 
 
-package generated.org.openstreetmap.osm._0;
+package db2.utils.Model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -38,6 +42,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "")
 @XmlRootElement(name = "tag")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Table(name = "tags")
 public class Tag {
 
@@ -52,6 +59,10 @@ public class Tag {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "way_id")
     private Way way;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "relation_id")
+    private Relation relation;
 
     @XmlAttribute(name = "k")
     @Column(name = "k")

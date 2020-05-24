@@ -6,7 +6,10 @@
 //
 
 
-package generated.org.openstreetmap.osm._0;
+package db2.utils.Model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -15,7 +18,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -32,10 +34,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://openstreetmap.org/osm/0.6}nd" maxOccurs="2000" minOccurs="2"/>
  *         &lt;element ref="{http://openstreetmap.org/osm/0.6}tag" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" />
+ *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
+ *       &lt;attribute name="lon" type="{http://www.w3.org/2001/XMLSchema}double" />
  *       &lt;attribute name="user" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="uid" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" />
  *       &lt;attribute name="visible" type="{http://www.w3.org/2001/XMLSchema}boolean" />
@@ -51,24 +54,50 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "nd",
     "tag"
 })
-@XmlRootElement(name = "way")
+@XmlRootElement(name = "node")
 @Entity
-@Table(name = "ways")
-public class Way {
+@AllArgsConstructor
+@Table(name = "nodes")
+@Data
+public class Node {
 
-    @XmlElement(required = true)
-    @Transient
-    protected List<Nd> nd;
+    @Override
+    public boolean equals(Object node) {
+        Node castingNode = (Node)node;
+        return
+                castingNode.id.compareTo(this.id) == 0 &&
+                castingNode.uid.compareTo(this.uid) == 0  &&
+                castingNode.version.compareTo(this.version) == 0  &&
+                castingNode.changeset.compareTo(this.changeset) == 0  &&
+                castingNode.lat.compareTo(this.lat) == 0 &&
+                castingNode.lon.compareTo(this.lon) == 0 &&
+                castingNode.user.equals(this.user);
+    }
 
-    @OneToMany(mappedBy = "way", cascade = CascadeType.ALL, orphanRemoval = true)
+    public int hashCode() {
+        return (this.id.toString() +
+                this.uid.toString() +
+                this.version.toString() +
+                this.changeset.toString() +
+                this.lat.toString() +
+                this.lon.toString() +
+                this.user).hashCode()
+                ;
+    }
+    @OneToMany(mappedBy = "node", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Tag> tag;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "unsignedLong")
     @Id
     protected BigInteger id;
+    @XmlAttribute(name = "lat")
+    @Column(name = "lat")
+    protected Double lat;
+    @XmlAttribute(name = "lon")
+    @Column(name = "lon")
+    protected Double lon;
     @XmlAttribute(name = "user")
     @Column(name = "nameOfUser")
     protected String user;
@@ -92,34 +121,16 @@ public class Way {
     @Transient
     protected XMLGregorianCalendar timestamp;
 
-    /**
-     * Gets the value of the nd property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the nd property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getNd().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Nd }
-     * 
-     * 
-     */
-    public List<Nd> getNd() {
-        if (nd == null) {
-            nd = new ArrayList<Nd>();
-        }
-        return this.nd;
+    public Node() {
+        id = new BigInteger("122");
+        lat = new Double("122");
+        lon = new Double("122");
+        user = "John";
+        uid = new BigInteger("122");
+        version = new BigInteger("122");
+        changeset = new BigInteger("122");
     }
+
 
     /**
      * Gets the value of the tag property.
@@ -172,6 +183,54 @@ public class Way {
      */
     public void setId(BigInteger value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the lat property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getLat() {
+        return lat;
+    }
+
+    /**
+     * Sets the value of the lat property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setLat(Double value) {
+        this.lat = value;
+    }
+
+    /**
+     * Gets the value of the lon property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getLon() {
+        return lon;
+    }
+
+    /**
+     * Sets the value of the lon property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setLon(Double value) {
+        this.lon = value;
     }
 
     /**

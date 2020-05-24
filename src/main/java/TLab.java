@@ -1,4 +1,4 @@
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 import generated.org.openstreetmap.osm._0.Osm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

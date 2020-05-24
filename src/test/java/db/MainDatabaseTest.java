@@ -4,7 +4,7 @@ package db;
 import db.strategiesInsert.BatchStrategy;
 import db.strategiesInsert.PrepareStatementStrategy;
 import db.strategiesInsert.StatementStrategy;
-import generated.org.openstreetmap.osm._0.Node;
+import db2.utils.Model.Node;
 import org.junit.Before;
 import org.junit.Test;
 
