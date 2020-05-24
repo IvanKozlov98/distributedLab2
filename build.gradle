@@ -11,6 +11,7 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.1.3.RELEASE'
     id 'java'
+    id 'application'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -21,6 +22,8 @@ apply plugin: 'idea'
 group 'nsu.distributed'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+mainClassName = "db2.utils.Main"
 
 configurations {
     compileOnly {
@@ -44,4 +47,8 @@ dependencies {
     compile "org.postgresql:postgresql:42.2.5"
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10'
 }
